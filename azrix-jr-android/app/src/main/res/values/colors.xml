@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="void_bg">#0B161C</color>
+    <color name="panel">#14262F</color>
+    <color name="rail">#112129</color>
+    <color name="azure">#00A0DF</color>
+</resources>
