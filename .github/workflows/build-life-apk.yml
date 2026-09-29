@@ -1,11 +1,11 @@
-name: Build Life APK
+name: Build Azrix_v2 APK
 
 on:
   push:
     branches: [ main, master ]
-    # only the life app (health, growth, wealth, savings) rebuilds this one
+    # only the Azrix_v2 app (health, growth, wealth, savings) rebuilds this one
     paths:
-      - "azrix-jr-life-android/**"
+      - "Azrix_v2/**"
   workflow_dispatch:
 
 jobs:
@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: azrix-jr-life-android
+        working-directory: Azrix_v2
     steps:
       - uses: actions/checkout@v4
 
@@ -31,9 +31,12 @@ jobs:
       - name: Build debug APK
         run: gradle assembleDebug --no-daemon
 
+      - name: Name the APK
+        run: mv app/build/outputs/apk/debug/app-debug.apk app/build/outputs/apk/debug/Azrix_v2.apk
+
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
-          name: azrix-jr-life-debug-apk
-          path: azrix-jr-life-android/app/build/outputs/apk/debug/*.apk
+          name: Azrix_v2-apk
+          path: Azrix_v2/app/build/outputs/apk/debug/Azrix_v2.apk
           if-no-files-found: error
