@@ -28,4 +28,13 @@ android {
 dependencies {
     implementation "androidx.appcompat:appcompat:1.7.0"
     implementation "androidx.webkit:webkit:1.11.0"
+
+    // appcompat and webkit pull in Kotlin stdlib 1.8.22 next to the older
+    // kotlin-stdlib-jdk7/jdk8 1.6.21 artifacts. Kotlin 1.8 folded those two into
+    // kotlin-stdlib itself, so the same classes arrive twice and the build fails
+    // on duplicates. Pinning them to 1.8.22 makes them empty shims.
+    constraints {
+        implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.8.22"
+        implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.8.22"
+    }
 }
