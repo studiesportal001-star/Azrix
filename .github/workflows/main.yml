@@ -3,6 +3,10 @@ name: Build APK
 on:
   push:
     branches: [ main, master ]
+    # only the manual-builder app rebuilds this one
+    paths:
+      - "azrix-jr-android/**"
+      - ".github/workflows/main.yml"
   workflow_dispatch:
 
 jobs:
@@ -24,7 +28,6 @@ jobs:
         uses: gradle/actions/setup-gradle@v4
         with:
           gradle-version: "8.7"
-          build-root-directory: azrix-jr-android
 
       - name: Build debug APK
         run: gradle assembleDebug --no-daemon
@@ -35,4 +38,3 @@ jobs:
           name: azrix-jr-debug-apk
           path: azrix-jr-android/app/build/outputs/apk/debug/*.apk
           if-no-files-found: error
-
